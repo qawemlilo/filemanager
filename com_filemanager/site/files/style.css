@@ -1,0 +1,131 @@
+body {
+	font: normal 11px auto "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	color: #4f6b72;
+	background: #E6EAE9;
+}
+
+#app-cont a {
+        text-align: center;
+}
+
+#app-cont input[type="text"],input[type="password"] {
+	border: 1px solid #CCCCCC;
+}
+
+#app-cont .adminlist {
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	margin-bottom: 20px;
+	border-collapse:collapse;
+	border: 1px solid #ded6ce;
+}
+
+#app-cont .adminlist caption {
+	padding: 0 0 5px 0;
+	width: 100%;	 
+	font: 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	text-align: left;
+}
+
+#app-cont .adminlist th {
+	font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	color: #4b3f34;
+	border-bottom: 1px solid #ded6ce;
+	border-right: 1px solid #ded6ce;
+	text-align: left;
+	padding: 6px 6px 6px 12px;
+	background: #c3b5a9;
+        width: 33.333%;
+}
+
+#app-cont .adminlist th.nobg {
+	border-top: 0;
+	border-left: 0;
+	border-right: 1px solid #ded6ce;
+	background: none;
+}
+
+#app-cont .adminlist td {
+	background: #fff;
+	padding: 6px 6px 6px 12px;
+	border-right: 1px solid #ded6ce;
+	
+}
+
+
+#app-cont .adminlist td.alt {
+	background: #f2f1ed;
+}
+
+#app-cont .adminlist th.spec {
+	border-left: 1px solid #6A5848;
+	border-top: 0;
+	background: #fff url(images/bullet1.gif) no-repeat;
+	font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+}
+
+#app-cont .adminlist th.specalt {
+	border-left: 1px solid #6A5848;
+	border-top: 0;
+	background: #f5fafa url(images/bullet2.gif) no-repeat;
+	font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	color: #797268;
+}
+
+#app-cont .q_logo {
+    height: 58px; 
+	background-repeat: no-repeat; 
+	border: 1px solid rgb(204, 204, 204); 
+	padding-top: 5px; 
+	padding-left: 55px; 
+	background-image: url(http://gdpint.com/QuantumFP/administrator/templates/khepri/images/header/icon-48-config.png); 
+	background-position: 5px 7px; -moz-border-radius: 4px 4px 4px 4px;
+}
+
+#app-cont .h-div {
+    text-align: center; 
+	margin-left: 5px; 
+	float: right; 
+	-moz-border-radius: 4px 4px 4px 4px;
+}
+
+#app-cont .h-div  a {
+    text-decoration: none;
+	border: 0px;
+}
+
+#app-cont .h-div img {
+	text-decoration: none;
+	border: 0px;
+}
+
+
+#app-cont .lbox {
+    display: block; 
+	float: left; 
+	height: auto; 
+	width: 70px; 
+	color: rgb(0, 0, 0); 
+	vertical-align: middle; 
+	text-decoration: none;
+}
+
+#app-cont .span {
+    position: absolute;
+	top:15px;
+	left: 65px;
+    color: #6A5848; 
+	font-size: 20px; 
+	line-height: 44px;
+	text-decoration: none;
+	border: 0px;
+}
+
+#app-cont .span-two {
+    color: #6A5848; 
+	font-size: 20px; 
+	line-height: 44px;
+	text-decoration: none;
+	border: 0px;
+}
