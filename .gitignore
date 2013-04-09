@@ -2,6 +2,12 @@
 *.psd
 node_modules/
 build/
+*.html~
+*.php~
+*.gitignore~
+*.md~
+*.sql~
+*.js~
 
 #################
 ## Eclipse
@@ -104,7 +110,6 @@ publish
 # Others
 [Bb]in
 [Oo]bj
-sql
 TestResults
 *.Cache
 ClientBin

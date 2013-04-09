@@ -7,7 +7,7 @@ jimport( 'joomla.environment.request' );
 jimport('joomla.user.helper');
 jimport('joomla.filesystem.file');
 
-require_once('helper.php');
+require_once(dirname(__FILE__).DS.'helper.php');
 
 
 class FileManagerViewAddClient extends JView
