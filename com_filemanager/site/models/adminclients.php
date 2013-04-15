@@ -1,8 +1,12 @@
 <?php
-defined('_JEXEC') or die('Restricted access');
+defined('_JEXEC') or die('Restricted access');
+
+
 // import Joomla modelitem library
 jimport('joomla.application.component.modelitem');
-require_once(dirname(__FILE__) . DS . 'tables' . DS . 'client.php');
+require_once(dirname(__FILE__) . DS . 'tables' . DS . 'client.php');
+
+
 class FileManagerModelAdminclients extends JModelItem
 {
     private $_total = null;    
@@ -124,9 +128,18 @@ class FileManagerModelAdminclients extends JModelItem
     
     
     private function _buildQuery() {
-        $query = "SELECT * ";
+        $query = "SELECT #__fm_clients.id, 
+                         #__fm_clients.userid, 
+                         #__fm_clients.phone, 
+                         #__fm_clients.cell, 
+                         #__fm_clients.fax, 
+                         #__fm_clients.address, 
+                         #__fm_clients.subscribe,
+                         #__users.name,
+                         #__users.email,
+                         #__users.username ";
         $query .= "FROM #__fm_clients, #__users ";
-        $query .= "WHERE #__fm_clients.userid = #__users.id  ";
+        $query .= "WHERE #__fm_clients.userid = #__users.id";
         
         return $query;        
     }
@@ -167,4 +180,5 @@ class FileManagerModelAdminclients extends JModelItem
  	
         return $this->_pagination;
     }
-}
+}
+
