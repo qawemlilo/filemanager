@@ -1,0 +1,53 @@
+
+h1 {
+ margin-top: 0px !important;
+}
+/*       
+   Listing layout, right panel
+*/
+
+.nav-list.panel-list, ul.services-offered {
+  padding-left: 0px;
+  font-size: 16px;  
+}
+
+ul.services-offered li {
+  line-height: 20px !important;   
+}
+
+
+/*       
+   Categories layout
+*/
+
+div.ss-categories {
+  font-size: 16px !important; 
+}
+
+div.ss-categories li {
+  line-height: 24px !important; 
+}
+
+
+/*       
+   Admin layout
+*/
+
+ul li a.active {
+  color: #202020 !important;
+}
+
+
+#ss-admin-table input[type="checkbox"] {
+  cursor: pointer;
+}
+
+.input-file {
+  margin-left: 5px !important;
+}
+
+#ss_listingmap img {
+  max-width: none;
+  width: auto; 
+  display:inline;
+}
