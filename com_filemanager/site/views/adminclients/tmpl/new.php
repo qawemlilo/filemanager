@@ -19,6 +19,7 @@ echo $this->loadTemplate('head');
         <option value="Miss">Miss</option>
         <option value="Dr">Dr</option>
       </select>
+      <p class="help-block"></p>
   </div>
 </div>
 
@@ -81,6 +82,7 @@ echo $this->loadTemplate('head');
   <label class="control-label">Address</label>
   <div class="controls">                     
     <textarea name="address" class="input-xlarge" rows="5" placeholder="..."></textarea>
+    <p class="help-block"></p>
   </div>
 </div>
 
@@ -95,7 +97,6 @@ echo $this->loadTemplate('head');
 
 
 <input type="hidden" name="option" value="com_filemanager" />
-<input type="hidden" name="view" value="adminclients" />
 <input type="hidden" name="task" value="adminclients.add" />
 <?php echo JHtml::_('form.token'); ?>
 

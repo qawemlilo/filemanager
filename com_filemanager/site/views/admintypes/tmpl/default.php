@@ -11,34 +11,30 @@ echo $this->loadTemplate('head');
 </div>
 
 <div class="row-fluid" id="ss-admin-table">
-<form action="<?php echo JRoute::_('index.php?option=com_filemanager&view=adminclients'); ?>" method="post" id="clients-form" name="clients-form">
+<form action="<?php echo JRoute::_('index.php?option=com_filemanager&view=adminclients'); ?>" method="post" id="types-form" name="types-form">
   <table class="table table-bordered table-striped">
     <thead>
       <tr>
         <th style="width:40px;">&nbsp;</th>
-        <th>Client Name</th>
-        <th>Phone</th>
-        <th>Email</th>
+        <th>File Type</th>
+        <th>ID</th>
       </tr>
     </thead>
     
     <tbody>
     <?php
-    if (isset($this->clients) && is_array($this->clients)) :
-      foreach ($this->clients as $client) {
+    if (isset($this->types) && is_array($this->types)) :
+      foreach ($this->types as $type) {
     ?>
       <tr>
         <td style="text-align: center">
-          <input type="checkbox" value="<?php echo $client->id; ?>" name="clients[]" />
+          <input type="checkbox" value="<?php echo $type->id; ?>" name="types[]" />
         </td>
         <td>
-          <a href="<?php echo JRoute::_('index.php?option=com_filemanager&view=adminclients&layout=edit&id=' . $client->id ); ?>"><?php echo $client->title . ' ' .$client->name; ?></a>
+          <a href="<?php echo JRoute::_('index.php?option=com_filemanager&view=admintypes&layout=edit&id=' . $type->id ); ?>"><?php echo $type->label; ?></a>
         </td>
         <td>
-          0<?php echo $client->phone; ?>
-        </td>
-        <td>
-          <a href="mailto:<?php echo $client->email; ?>"><?php echo $client->email; ?></a>
+          <?php echo $type->id; ?>
         </td>
       </tr>
     <?php
@@ -48,7 +44,7 @@ echo $this->loadTemplate('head');
     </tbody>
   </table>
   
-<input type="hidden" id="hidden-task" name="task" value="adminclients.remove" />
+<input type="hidden" id="hidden-task" name="task" value="admintypes.remove" />
 <?php echo JHtml::_('form.token'); ?>
 </form>
 </div>
@@ -87,25 +83,24 @@ jQuery.noConflict();
       }
       else {
         $('#pagidiv').addClass('pagination');
-      } 
+      }
         
-        
-        $('#delete-client').on('click', function () {
+        $('#delete-type').on('click', function () {
             var yes = confirm('Are you sure you want to delete the selected item(s)?');
             
             if (yes) {
-               $('#clients-form').submit();
+               $('#types-form').submit();
             }
             
             return false;
         });
 
         
-        $('#edit-client').on('click', function () {
-            $('#hidden-task').val('adminclients.edit');
+        $('#edit-type').on('click', function () {
+            $('#hidden-task').val('admintypes.edit');
             
-            if ($('#hidden-task').val() === 'adminclients.edit') {
-                $('#clients-form').submit();
+            if ($('#hidden-task').val() === 'admintypes.edit') {
+                $('#types-form').submit();
             }
             
             return false;

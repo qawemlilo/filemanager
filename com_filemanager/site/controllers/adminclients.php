@@ -60,26 +60,54 @@ class FileManagerControllerAdminclients extends JController
     
     
     
+    public function edit () {
+        JRequest::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+        
+        $application =& JFactory::getApplication();
+        $refer = JRoute::_($_SERVER['HTTP_REFERER']);
+        $model =& $this->getModel('adminclients');
+        $clients = JRequest::getVar('clients', null, 'post', 'array');
+                
+        if (is_array($clients) && !empty($clients) && count($clients) > 0) {
+            if (!($id = (int)$clients[0])) {
+                $application->redirect($refer, 'Error! Failed to open Listing', 'error');
+            }
+            else {
+                $nextpage = JRoute::_('index.php?option=com_filemanager&view=adminclients&layout=edit&id=' . $id);
+                $application->redirect($nextpage);
+            }
+        }
+        else {
+            $application->redirect($refer, 'Error! No Listing was selected', 'error');
+        }
+    }
+    
+    
+    
+    
     public function update() {
         JRequest::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
         
         $application =& JFactory::getApplication();
         $model =& $this->getModel('adminclients');
         $refer = JRoute::_($_SERVER['HTTP_REFERER']);
-        $user =& JFactory::getUser();
         $client = array();
         
-        $client['userid'] = $user->get('id');
+        $id = JRequest::getVar('id', '', 'post', 'int'); 
+        
         $client['title'] = JRequest::getVar('title', '', 'post', 'string');
         $client['phone'] = JRequest::getVar('phone', 0, 'post', 'int');
+        $client['fax'] = JRequest::getVar('fax', 0, 'post', 'int');
         $client['cell'] = JRequest::getVar('cell', 0, 'post', 'int');
         $client['address'] = JRequest::getVar('address', '', 'post', 'string');
-        $client['subscribe'] = JRequest::getVar('subscribe', 0, 'post', 'int');
+        //$client['subscribe'] = JRequest::getVar('subscribe', 0, 'post', 'int');
         
-        $clientid = JRequest::getVar('id', 0, 'post', 'int');
+        if (!$this->updateUser()) {
+            JError::raiseWarning(500, 'Failed to update user info');
+        }
         
-        if ($model->updateClient($clientid, $client)) {
-            $application->redirect($refer, 'Client info successfully updated', 'success');
+        if ($model->updateClient($id, $client)) {
+            $application->redirect('index.php?option=com_filemanager&view=adminclients', 'Client info successfully updated', 'success');
         }
         else {
             $application->redirect($refer, 'Error! Failed to update client info', 'error');
@@ -130,7 +158,7 @@ class FileManagerControllerAdminclients extends JController
 		$defaultUserGroup = $config->get('new_usertype', 2);
 		$acl = JFactory::getACL();
 		
-		$instance->set('id', 0);
+		$instance->set('id', null);
 		$instance->set('name', $user['fullname']);
 		$instance->set('username', $user['username']);
 		$instance->set('password', $password);
@@ -140,14 +168,42 @@ class FileManagerControllerAdminclients extends JController
 		
 
         if ($instance->save()) {      
-	        $newUser =& JFactory::getUser($this->user['username']);
-			$id = $newUser->get('id');
+	        $newUser =& JFactory::getUser($user['username']);
+			$id = $newUser->id;
             
             return $id;
 		}
         else {   
 	        return false;	
         }			
+    }
+    
+    
+    
+    
+    private function updateUser() {
+        $id = JRequest::getVar('userid', '', 'post', 'int');
+	    $fullname = JRequest::getVar('fullname', '', 'post', 'string');
+		$email = JRequest::getVar('email', '', 'post', 'string');
+        
+        $user =& JFactory::getUser($id);
+        
+        
+        if ($email != $user->email || $fullname != $user->name) {
+            if ($email != $user->email) {
+               $user->set('email', $email);
+            }
+            
+            if ($fullname != $user->name) {
+               $user->set('name', $fullname);
+            }
+        
+            if (!$user->save()) {
+                return false;
+            }
+        }
+        
+        return true;
     }
     
     
@@ -165,6 +221,21 @@ class FileManagerControllerAdminclients extends JController
         else {
             return true;
         }
+    }
+    
+    
+    
+    
+    private function deleteFolders ($id) {
+        $path = JPATH_SITE . DS . 'media' . DS . 'com_filemanager' . DS . 'client_' . $id;
+        
+        foreach ($categories as $id) {
+            if (JFolder::exists($path . $id)) {
+                JFolder::delete($path . $id);
+            }
+        }
+    
+        return true;
     }
 
 

@@ -4,10 +4,10 @@ defined('_JEXEC') or die('Restricted access');
 
 // import Joomla modelitem library
 jimport('joomla.application.component.modelitem');
-require_once(dirname(__FILE__) . DS . 'tables' . DS . 'client.php');
+require_once(dirname(__FILE__) . DS . 'tables' . DS . 'type.php');
 
 
-class FileManagerModelAdminclients extends JModelItem
+class FileManagerModelAdmintypes extends JModelItem
 {
     private $_total = null;    
     private $_pagination = null;   
@@ -32,19 +32,19 @@ class FileManagerModelAdminclients extends JModelItem
     
     
     
-    public function getTable($type = 'Client', $prefix = 'FileManagerTable', $config = array()) {
+    public function getTable($type = 'Type', $prefix = 'FileManagerTable', $config = array()) {
         return JTable::getInstance($type, $prefix, $config);
     }
     
     
     
     
-    public function addClient($arr = array()) {
+    public function addType($arr = array()) {
         
         if (is_array($arr) && count($arr) > 0) {
-            $table = $this->getTable();
+            $table =& $this->getTable();
             
-            if (!$table->bind( $arr )) {
+            if (!$table->bind($arr)) {
                 JError::raiseWarning( 500, $table->getError() );
                 return false;
             }
@@ -61,36 +61,22 @@ class FileManagerModelAdminclients extends JModelItem
     
     
     
-    
-    public function getClient() {
+    public function getType() {
         $id = JRequest::getInt('id');
-        $db =& JFactory::getDBO();
+        $table =& $this->getTable();
         
-        $query = "SELECT clients.id, 
-                         clients.userid, 
-                         clients.title, 
-                         clients.phone, 
-                         clients.cell, 
-                         clients.address, 
-                         clients.fax, 
-                         clients.subscribe, 
-                         users.name,
-                         users.username,
-                         users.email ";
-        $query .= "FROM #__fm_clients clients, #__users users ";
-        $query .= "WHERE clients.userid = users.id AND clients.id = $id";
+        if (!$table->load($id)) {
+            JError::raiseWarning( 500, $table->getError() );
+        }
         
-        $db->setQuery($query);
-        $result = $db->loadObject();
-        
-        return $result;
+        return $table;
     }  
     
     
     
     
-    public function updateClient($id, $arr) {
-        $table = $this->getTable();
+    public function updateType($id, $arr) {
+        $table =& $this->getTable();
         
         if (!$table->load($id)) {
             JError::raiseWarning( 500, $table->getError() . ' (id:' . $id . ')' );
@@ -113,46 +99,42 @@ class FileManagerModelAdminclients extends JModelItem
     
     
  
-    public function removeClients($clients) {
-        if (is_array($clients) && count($clients) > 0) {
-            $ids = '(' . implode(",", $clients) . ')';
-            
-            $db =& JFactory::getDBO();
-            $query = "DELETE FROM #__users WHERE id IN (SELECT userid FROM #__fm_clients WHERE id IN $ids)";
-            $query2 = "DELETE FROM #__fm_clients WHERE id IN $ids";
-            $db->setQuery($query);
-            $result = $db->query();
-            
-            if ($result) {
-                $db->setQuery($query2);
-                $result = $db->query();
-                
-                return $result;
-            }
-                
+    public function removeType($id) {
+        $table =& $this->getTable();
+        
+        if (!$table->delete($id)) {
+            JError::raiseWarning( 500, $table->getError() . ' (id:' . $id . ')' );
             return false;
         }
+                
+        return true;
+    }
+    
+    
+    
+    public function removeTypes($arr = array()) {
+        $result = true;
         
-        return false;
+        if (is_array($arr) && count($arr) > 0) {
+            foreach($arr as $id) {
+                if (!$this->removeType($id)) {
+                    JError::raiseWarning(500, 'Failed to delete ' . $id);
+                    $result = false;
+                }
+            }
+        }
+        else {
+            $result = false;
+        }
+        
+        return $result;
     }
     
     
     
     
     private function _buildQuery() {
-        $query = "SELECT clients.id, 
-                         clients.title,
-                         clients.userid, 
-                         clients.phone, 
-                         clients.cell, 
-                         clients.fax, 
-                         clients.address, 
-                         clients.subscribe,
-                         users.name,
-                         users.email,
-                         users.username ";
-        $query .= "FROM #__fm_clients clients, #__users users ";
-        $query .= "WHERE clients.userid = users.id";
+        $query = "SELECT * FROM #__fm_types ORDER BY id ASC";
         
         return $query;        
     }
@@ -172,7 +154,7 @@ class FileManagerModelAdminclients extends JModelItem
     
     
     
-    public function getClients() {
+    public function getTypes() {
         $query = $this->_buildQuery();
         $this->_data = $this->_getList($query, $this->getState('limitstart'), $this->getState('limit'));
         

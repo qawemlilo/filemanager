@@ -51,3 +51,12 @@ ul li a.active {
   width: auto; 
   display:inline;
 }
+
+#limit {
+  width: 70px!important;
+}
+
+
+span.pagenav, a.pagenav, .pagenav {
+  clear: none!important;
+}

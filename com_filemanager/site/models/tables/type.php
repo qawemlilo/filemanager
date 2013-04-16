@@ -8,10 +8,10 @@ jimport('joomla.database.table');
 
  
  
-class SaServiceTableCategory extends JTable
+class FileManagerTableType extends JTable
 {
     function __construct(&$db) 
     {
-        parent::__construct('#__ss_categories', 'id', $db);
+        parent::__construct('#__fm_types', 'id', $db);
     }
 }

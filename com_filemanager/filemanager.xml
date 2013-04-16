@@ -7,15 +7,15 @@
     <authorUrl>http://www.ragingflame.co.za</authorUrl>
     <copyright>(C)2013 Raging Flame</copyright>
     <license>License Info</license>
-    <version>0.0.2</version>
+    <version>0.0.5</version>
     <description>Raging Flame File Manager</description>
     <install>        <sql>            <file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>        </sql>
     </install>
     <uninstall>        <sql>            <file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>        </sql>    </uninstall> 
     <update>        <schemas>            <schemapath type="mysql">sql/updates/mysql</schemapath>        </schemas>
     </update>
-    <files folder="site">        <filename>index.html</filename>        <filename>filemanager.php</filename>        <filename>controller.php</filename>        <folder>controllers</folder>        <folder>views</folder>        <folder>files</folder>        <folder>asserts</folder>        <folder>models</folder>
-    </files>
+    <files folder="site">        <filename>index.html</filename>        <filename>filemanager.php</filename>        <filename>controller.php</filename>        <folder>controllers</folder>        <folder>views</folder>        <folder>asserts</folder>        <folder>models</folder>
+    </files>        <media destination="com_filemanager" folder="media">        <folder>images</folder>    </media>    
     <administration>        <menu>File Manager</menu>                    <files folder="admin">            <filename>index.html</filename>            <filename>filemanager.php</filename>            <filename>controller.php</filename>            <folder>sql</folder>            <folder>tables</folder>            <folder>models</folder>            <folder>views</folder>        </files>
     </administration>
 </extension>

@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS `#__fm_types` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `label` varchar(40) NOT NULL,
+   PRIMARY KEY  (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
