@@ -36,7 +36,7 @@ class FileManagerControllerAdminuploads extends JController
             $ext = strtolower(JFile::getExt($filename));
             
             $newupload['ext'] = $ext;
-            $newupload['filename'] = 'file_' . time();
+            $newupload['filename'] = strtolower(str_replace(' ', '-', $filename)) . '-' . time();
             
             $path = JPATH_SITE . DS . 'media' . DS . 'com_filemanager' . DS . 'client_' . $newupload['clientid'] . DS . $newupload['filename'] . '.' . $ext;
             
