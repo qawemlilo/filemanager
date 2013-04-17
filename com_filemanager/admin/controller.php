@@ -10,7 +10,9 @@ jimport('joomla.application.component.controller');
 class FileManagerController extends JController
 {
     function display($cachable = false) {
-        JRequest::setVar('view', JRequest::getCmd('view', 'FileManagers'));
+        $input = JFactory::getApplication()->input;
+        $input->set('view', $input->getCmd('view', 'Clients'));
+
         parent::display($cachable);
     }
 }

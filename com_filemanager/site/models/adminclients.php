@@ -66,7 +66,9 @@ class FileManagerModelAdminclients extends JModelItem
         $id = JRequest::getInt('id');
         $db =& JFactory::getDBO();
         
-        $query = "SELECT clients.id, 
+        $query = $db->getQuery(true);
+        
+        $query->select("clients.id, 
                          clients.userid, 
                          clients.title, 
                          clients.phone, 
@@ -76,11 +78,11 @@ class FileManagerModelAdminclients extends JModelItem
                          clients.subscribe, 
                          users.name,
                          users.username,
-                         users.email ";
-        $query .= "FROM #__fm_clients clients, #__users users ";
-        $query .= "WHERE clients.userid = users.id AND clients.id = $id";
+                         users.email");
+        $query->from("#__fm_clients AS clients, #__users AS users");
+        $query->where("clients.userid = users.id AND clients.id = $id");
         
-        $db->setQuery($query);
+        $db->setQuery((string)$query);
         $result = $db->loadObject();
         
         return $result;
