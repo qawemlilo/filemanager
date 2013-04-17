@@ -19,6 +19,7 @@ class FileManagerViewAdminuploads extends JView
 {
     function display($tpl = null) {
         $this->layout = JRequest::getVar('layout', '', 'GET');
+        $this->config = JComponentHelper::getParams('com_filemanager');
         $application = JFactory::getApplication();
         
         if(!isAllowed()) {

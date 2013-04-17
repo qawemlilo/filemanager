@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<fieldset name="clients_config" label="Clients Admin Config" description="Clients Admin Config">
+        <field name="show_title" type="radio" label="Show Title Field" description="Show Title Field" default="1">
+            <option value="0">JHIDE</option>
+            <option value="1">JSHOW</option>
+        </field>
+        <field name="show_tel" type="radio" label="Show Telephone Field" description="Show Telephone Field" default="1">
+            <option value="0">JHIDE</option>
+            <option value="1">JSHOW</option>
+        </field>
+        <field name="show_cell" type="radio" label="Show Cell Field" description="Show Cell Field" default="1">
+            <option value="0">JHIDE</option>
+            <option value="1">JSHOW</option>
+        </field>
+        <field name="show_fax" type="radio" label="Show Fax Field" description="Show Fax Field" default="1">
+            <option value="0">JHIDE</option>
+            <option value="1">JSHOW</option>
+        </field>
+        <field name="show_address" type="radio" label="Show Address Field" description="Show Address Field" default="1">
+            <option value="0">JHIDE</option>
+            <option value="1">JSHOW</option>
+        </field>
+	</fieldset>
+    
+	<fieldset name="styles_config" label="Component Styles" description="Component CSS">
+        <field name="include_bootstrap" type="radio" label="Include Bootstrap" description="Include Twitter Bootstrap" default="1">
+            <option value="0">NO</option>
+            <option value="1">YES</option>
+        </field>
+        <field name="include_paginationjs" type="radio" label="Include Pagination Script" description="Include Pagination Script" default="1">
+            <option value="0">NO</option>
+            <option value="1">YES</option>
+        </field>
+        <field name="include_customcss" type="textarea" rows="20" cols="40" label="Custom CSS" description="Custom CSS"></field>
+	</fieldset>
+    
+	<fieldset name="email_config" label="Emails Config" description="Emails Config">
+        <field name="email_newclient" type="radio" label="Email New Clients" description="Send an email notification to new clients" default="1">
+            <option value="0">NO</option>
+            <option value="1">YES</option>
+        </field>
+        <field name="email_from" type="text" label="From" description="Company email address"></field>
+        <field name="email_msg" type="textarea" rows="10" cols="40" label="Email Message" description="Custom email message"></field>
+	</fieldset>
+    
+	<fieldset name="permissions" label="JCONFIG_PERMISSIONS_LABEL" description="JCONFIG_PERMISSIONS_DESC">
+      <field name="rules" type="rules" label="JCONFIG_PERMISSIONS_LABEL" class="inputbox" validate="rules" filter="rules" component="com_filemanager" section="component"/>
+	</fieldset>
+</config>

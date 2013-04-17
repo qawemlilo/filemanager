@@ -8,7 +8,10 @@ echo $this->loadTemplate('head');
 <div class="row-fluid">
 <form class="form-validate form-horizontal well well-small" action="<?php echo JRoute::_('index.php'); ?>" name="editclient-form" id="editclient-form" method="post">
 <fieldset>
-<!-- Text input-->
+
+<?php
+if ($this->config->get('show_title')) {
+?>
 <div class="control-group">
   <label class="control-label">Title</label>
   <div class="controls">
@@ -22,8 +25,11 @@ echo $this->loadTemplate('head');
       <p class="help-block"></p>
   </div>
 </div>
+<?php
+}
+?>
 
-<!-- Text input-->
+
 <div class="control-group">
   <label class="control-label">Full name</label>
   <div class="controls">
@@ -50,7 +56,10 @@ echo $this->loadTemplate('head');
   </div>
 </div>
 
-<!-- Text input-->
+
+<?php
+if ($this->config->get('show_tel')) {
+?>
 <div class="control-group">
   <label class="control-label">Tel Number</label>
   <div class="controls">
@@ -59,7 +68,13 @@ echo $this->loadTemplate('head');
   </div>
 </div>
 
-<!-- Text input-->
+
+<?php
+}
+
+
+if ($this->config->get('show_cell')) {
+?>
 <div class="control-group">
   <label class="control-label">Cell Number</label>
   <div class="controls">
@@ -67,8 +82,12 @@ echo $this->loadTemplate('head');
     <p class="help-block"></p>
   </div>
 </div>
+<?php
+}
 
-<!-- Text input-->
+
+if ($this->config->get('show_fax')) {
+?>
 <div class="control-group">
   <label class="control-label">Fax Number</label>
   <div class="controls">
@@ -76,8 +95,12 @@ echo $this->loadTemplate('head');
     <p class="help-block"></p>
   </div>
 </div>
+<?php
+}
 
 
+if ($this->config->get('show_address')) {
+?>
 <div class="control-group">
   <label class="control-label">Address</label>
   <div class="controls">                     
@@ -85,6 +108,10 @@ echo $this->loadTemplate('head');
     <p class="help-block"></p>
   </div>
 </div>
+<?php
+}
+?>
+
 
 <input type="hidden" name="option" value="com_filemanager" />
 <input type="hidden" name="id" value="<?php echo $this->client->id; ?>" />

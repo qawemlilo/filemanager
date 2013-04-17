@@ -58,32 +58,39 @@ jQuery.noConflict();
 
 (function ($) {
     $(function () {
-      if ($('.pagination').length && !$('.pagination li').length) {
-        var pgnDiv = $('.pagination')[0],
+    <?php
+      if ($this->config->get('include_paginationjs')) :
+    ?>
+        if ($('.pagination').length && !$('.pagination li').length) {
+            var pgnDiv = $('.pagination')[0],
             ul = $('<ul>'),
             li, child;
         
-        $(pgnDiv).children().each(function () {
-            child = $(this);
-            li = $('<li>');
+            $(pgnDiv).children().each(function () {
+                child = $(this);
+                li = $('<li>');
             
-            if (child.prop("tagName") === 'STRONG') {
-              li.addClass('disabled');
+                if (child.prop("tagName") === 'STRONG') {
+                    li.addClass('disabled');
               
-              child = $('<a>', {
-                href: "#",
-                html: child.text()
-              });
-            }
-            li.append(child);
-            ul.append(li);
-        });
+                    child = $('<a>', {
+                        href: "#",
+                        html: child.text()
+                    });
+                }
+                
+                li.append(child);
+                ul.append(li);
+            });
         
-        $(pgnDiv).empty().append(ul)
-      }
-      else {
-        $('#pagidiv').addClass('pagination');
-      }
+            $(pgnDiv).empty().append(ul)
+        }
+        else {
+            $('#pagidiv').addClass('pagination');
+        } 
+    <?php
+      endif;
+    ?>
         
         $('#delete-type').on('click', function () {
             var yes = confirm('Are you sure you want to delete the selected item(s)?');

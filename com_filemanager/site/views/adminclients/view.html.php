@@ -19,6 +19,7 @@ class FileManagerViewAdminclients extends JView
 {
     function display($tpl = null) {
         $this->layout = JRequest::getVar('layout', '', 'GET');
+        $this->config = JComponentHelper::getParams('com_filemanager');
         
         if(!isAllowed()) {
             $application = JFactory::getApplication();
