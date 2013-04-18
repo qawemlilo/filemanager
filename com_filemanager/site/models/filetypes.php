@@ -5,15 +5,12 @@ defined('_JEXEC') or die('Restricted access');
 // import Joomla modelitem library
 jimport('joomla.application.component.modelitem');
 require_once(dirname(__FILE__) . DS . 'tables' . DS . 'type.php');
-require_once(dirname(__FILE__) . DS . 'tables' . DS . 'client.php');
 
 
-class FileManagerModelClient extends JModelItem
+class FileManagerModelFileTypes extends JModelItem
 {
     private $_total = null;    
     private $_pagination = null;   
-    
-    
     
     
     function __construct() {
@@ -34,63 +31,110 @@ class FileManagerModelClient extends JModelItem
     
     
     
-    public function getTable($type = 'Client', $prefix = 'FileManagerTable', $config = array()) {
+    
+    public function getTable($type = 'Type', $prefix = 'FileManagerTable', $config = array()) {
         return JTable::getInstance($type, $prefix, $config);
     }
     
     
     
     
-    public function getDetails() {
-        $user =& JFactory::getUser();
-        $db =& JFactory::getDBO();
+    public function addType($arr = array()) {
         
-        $query = $db->getQuery(true);
+        if (is_array($arr) && count($arr) > 0) {
+            $table =& $this->getTable();
+            
+            if (!$table->bind($arr)) {
+                JError::raiseWarning( 500, $table->getError() );
+                return false;
+            }
+            if (!$table->store( $arr )) {
+                JError::raiseWarning( 500, $table->getError() );
+                return false;
+            }
+                
+            return $table->id;
+        }
         
-        $query->select("clients.id, clients.userid, clients.title, clients.phone, clients.cell, clients.address, clients.fax, users.name, users.username, users.email")
-              ->from("#__fm_clients AS clients, #__users AS users")
-              ->where("clients.userid = users.id AND clients.userid = $user->id");
-        
-        $db->setQuery((string)$query);
-        $result = $db->loadObject();
-        
-        return $result;
+        return false;
     }
-
-
-
-
-    public function updateClient($id, $arr) {
-        $table = $this->getTable();
+    
+    
+    
+    public function getType() {
+        $id = JRequest::getInt('id');
+        $table =& $this->getTable();
         
         if (!$table->load($id)) {
-            JError::raiseWarning(500, $table->getError());
+            JError::raiseWarning( 500, $table->getError() );
+        }
+        
+        return $table;
+    }  
+    
+    
+    
+    
+    public function updateType($id, $arr) {
+        $table =& $this->getTable();
+        
+        if (!$table->load($id)) {
+            JError::raiseWarning( 500, $table->getError() . ' (id:' . $id . ')' );
             return false;
         }
         
         if (!$table->bind($arr)) {
-            JError::raiseWarning(500, $table->getError());
+            JError::raiseWarning( 500, $table->getError() . ' (id:' . $id . ')' );
             return false;
         }
         
         if (!$table->store($arr)) {
-            JError::raiseWarning(500, $table->getError());
+            JError::raiseWarning( 500, $table->getError() . ' (id:' . $id . ')' );
             return false;
         }
                 
         return true;
-    }    
+    }
+    
+    
+    
+ 
+    public function removeType($id) {
+        $table =& $this->getTable();
+        
+        if (!$table->delete($id)) {
+            JError::raiseWarning( 500, $table->getError() . ' (id:' . $id . ')' );
+            return false;
+        }
+                
+        return true;
+    }
+    
+    
+    
+    public function removeTypes($arr = array()) {
+        $result = true;
+        
+        if (is_array($arr) && count($arr) > 0) {
+            foreach($arr as $id) {
+                if (!$this->removeType($id)) {
+                    JError::raiseWarning(500, 'Failed to delete ' . $id);
+                    $result = false;
+                }
+            }
+        }
+        else {
+            $result = false;
+        }
+        
+        return $result;
+    }
     
     
     
     
     private function _buildQuery() {
-        $user =& JFactory::getUser();
-        $typeID = JRequest::getVar('file', 0, 'GET', 'int');
-        
-        $query = "SELECT * FROM #__fm_uploads ";
-        $query .= "WHERE clientid = (SELECT id FROM #__fm_clients WHERE userid = $user->id) ";
-        $query .= "AND typeid = $typeID ORDER BY ts ASC";
+        $query = "SELECT * FROM #__fm_types ORDER BY id ASC";
         
         return $query;        
     }
@@ -106,33 +150,17 @@ class FileManagerModelClient extends JModelItem
  	    }
         return $this->_total;
     }
-
-    
-
-    
-    public function getFileTypes() {
-        $user =& JFactory::getUser();
-        $db =& JFactory::getDBO();
-        
-        $query = $db->getQuery(true);
-        $query->select("*")
-              ->from("#__fm_types") 
-              ->order("id ASC");
-        $db->setQuery($query);
-        $result = $db->loadObjectList();
-        
-        return $result;
-    }
     
     
     
     
-    public function getFiles() {
+    public function getTypes() {
         $query = $this->_buildQuery();
         $this->_data = $this->_getList($query, $this->getState('limitstart'), $this->getState('limit'));
         
         return $this->_data;
     }
+    
     
     
     

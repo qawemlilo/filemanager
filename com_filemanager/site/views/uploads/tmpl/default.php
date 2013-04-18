@@ -6,7 +6,7 @@ echo $this->loadTemplate('head');
 ?>
 
 <div class="row-fluid">
-  <form action="<?php echo JRoute::_('index.php?option=com_filemanager&view=client&file=' . $this->file); ?>" method="post" name="pagination-form">
+  <form action="<?php echo JRoute::_('index.php?option=com_filemanager&view=uploads'); ?>" method="post" name="pagination-form">
    <p>Display # <?php echo $this->pagination->getLimitBox() . " &nbsp; &nbsp; <span style=\"margin-left: 200px;\"> " . $this->pagination->getPagesCounter(); ?></span></p>
   </form>
 </div>
@@ -16,29 +16,33 @@ echo $this->loadTemplate('head');
     <thead>
       <tr>
         <th style="width:40px;">&nbsp;</th>
-        <th>Filename</th>
         <th>Date of Upload</th>
-        <th>Downloads</th>
+        <th>Filename</th>
+        <th>File Type</th>
+        <th>Client Name</th>
       </tr>
     </thead>
     
     <tbody>
     <?php
-    if (isset($this->files) && is_array($this->files)) :
-      foreach ($this->files as $file) {
+    if (isset($this->uploads) && is_array($this->uploads)) :
+      foreach ($this->uploads as $upload) {
     ?>
       <tr>
         <td style="text-align: center">
-          <input type="checkbox" value="<?php echo $file->id; ?>" name="files[]" />
+          <input type="checkbox" value="<?php echo $upload->id; ?>" name="types[]" />
         </td>
         <td>
-          <?php echo $file->filename; ?>
+          <?php echo $upload->ts; ?></a>
         </td>
         <td>
-          <?php echo $file->ts; ?>
+          <?php echo $upload->filename; ?>
         </td>
         <td>
-          <a href="#">Download</a>
+          <?php echo $upload->label; ?>
+        </td>
+        <td>
+          <?php echo $upload->title . ' ' . $upload->name ; ?>
         </td>
       </tr>
     <?php
@@ -48,23 +52,21 @@ echo $this->loadTemplate('head');
     </tbody>
   </table>
 </div>
-<div class="row-fluid" id="pagidiv" style="text-align: center; border-top: 0px">
+
+<div class="row-fluid" id="pagidiv" style="text-align: center">
     <?php echo $this->pagination->getPagesLinks(); ?>
 </div>
 
-<?php
-if ($this->config->get('include_paginationjs')) :
-?>
+
 <script>window.jQuery || document.write('<script src="<?php echo JURI::base() . 'components/com_filemanager/asserts/js/jquery.js' ?>"><\/script>')</script>
 <script type="text/javascript">
 jQuery.noConflict();
 
 (function ($) {
     $(function () {
-        $('.edit-client-details').on('click', function () {
-            window.location.href = "<?php echo JRoute::_('index.php?option=com_filemanager&view=client&layout=edit'); ?>";   
-        });
-        
+    <?php
+      if ($this->config->get('include_paginationjs')) :
+    ?>
         if ($('.pagination').length && !$('.pagination li').length) {
             var pgnDiv = $('.pagination')[0],
             ul = $('<ul>'),
@@ -91,10 +93,31 @@ jQuery.noConflict();
         }
         else {
             $('#pagidiv').addClass('pagination');
-        }
+        } 
+    <?php
+      endif;
+    ?>
+        
+        $('#delete-client').on('click', function () {
+            var yes = confirm('Are you sure you want to delete the selected item(s)?');
+            
+            if (yes) {
+               $('#clients-form').submit();
+            }
+            
+            return false;
+        });
+
+        
+        $('#edit-client').on('click', function () {
+            $('#hidden-task').val('clients.edit');
+            
+            if ($('#hidden-task').val() === 'clients.edit') {
+                $('#clients-form').submit();
+            }
+            
+            return false;
+        });
     });
 }(jQuery));
 </script>
-<?php
-endif;
-?>

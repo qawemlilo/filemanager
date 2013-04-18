@@ -10,24 +10,19 @@ jimport('joomla.application.component.view');
 
 class FileManagerViewClients extends JView
 {
-        function display($tpl = null) 
-        {
-                // Get data from the model
-                $clients = $this->get('Clients');
-                $pagination = $this->get('Pagination');
- 
-                // Check for errors.
-                if (count($errors = $this->get('Errors'))) 
-                {
-                        JError::raiseError(500, implode('<br />', $errors));
-                        return false;
-                }
-                
-                // Assign data to the view
-                $this->clients = $clients;
-                $this->pagination = $pagination;
- 
-                // Display the template
-                parent::display($tpl);
+    function display($tpl = null) {
+        $this->clients = $this->get('Items');
+        $this->pagination = $this->get('Pagination');
+        
+        jimport('joomla.application.component.view');
+        JToolBarHelper::title(JText::_('COM_FILEMANAGER'));
+        JToolBarHelper::preferences('com_filemanager');
+        
+        if (count($errors = $this->get('Errors'))) {
+            JError::raiseError(500, implode('<br />', $errors));
+            return false;
         }
+        
+        parent::display($tpl);
+    }
 }

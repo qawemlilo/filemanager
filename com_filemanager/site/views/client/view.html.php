@@ -23,11 +23,12 @@ class FileManagerViewClient extends JView
         }
         
         if ($this->layout == 'edit') {
-            $this->client = $this->get('Client');
-        }
-        
-        if ($this->layout == 'edit') {
-            $this->client = $this->get('Client');
+            $this->details = $this->get('Details');
+            
+            if (!$this->details) {
+                JError::raiseError(500, "Database Eroor! Failed to load your details.");
+                return false;
+            }
         }
         else {
             if (!$this->file) {
@@ -39,6 +40,7 @@ class FileManagerViewClient extends JView
             $this->menu = $this->createMenu($filetypes);
             
             $this->files = $this->get('Files');
+            $this->pagination = $this->get('Pagination');
         }
         
         parent::display($tpl);
@@ -62,8 +64,7 @@ class FileManagerViewClient extends JView
                 $ul .= '<li><a href="' . JRoute::_('index.php?option=com_filemanager&view=client&file=' . $filetype->id) . '">' . $filetype->label . '</a></li>';
             }
         }
-        
-        $ul .= '<li class="pull-right"><button href="#" class="btn btn-success"><i class="icon-pencil"> </i> My Details</button></li>';
+        $ul .= '<li class="pull-right"><button class="btn btn-success edit-client-details"><i class="icon-pencil icon-white"> </i> My Details</button></li>';
         
         $ul .= '</ul>';
         
