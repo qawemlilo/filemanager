@@ -51,7 +51,7 @@ echo $this->loadTemplate('head');
   <label class="control-label"></label>
   <div class="controls">
     <button id="submit" type="submit" name="submit" class="btn btn-success">Upload</button>
-    <a id="cancel" href="<?php echo JRoute::_('index.php?option=com_filemanager&view=clients'); ?>" class="btn btn-default">Cancel</a>
+    <a id="cancel" href="<?php echo JRoute::_('index.php?option=com_filemanager&view=uploads'); ?>" class="btn btn-default">Cancel</a>
   </div>
 </div>
 

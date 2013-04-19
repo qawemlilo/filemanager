@@ -25,8 +25,10 @@ class FileManagerControllerUploads extends JController
         $application =& JFactory::getApplication();
         $model =& $this->getModel('uploads');
         $refer = JRoute::_($_SERVER['HTTP_REFERER']);
+        $user =& JFactory::getUser();
         $newupload = array();
-
+        
+        $newupload['created_by'] = (int) $user->get('id');
         $newupload['clientid'] = JRequest::getVar('clientid', '', 'post', 'int');
         $newupload['typeid'] = JRequest::getVar('typeid', '', 'post', 'int');
         $file =  JRequest::getVar('fileupload', null, 'files', 'array');

@@ -13,6 +13,8 @@ class FileManagerViewClients extends JView
     function display($tpl = null) {
         $this->clients = $this->get('Items');
         $this->pagination = $this->get('Pagination');
+        $this->config = JComponentHelper::getParams('com_filemanager');
+        $this->colspan = 4;
         
         if (count($errors = $this->get('Errors'))) {
             JError::raiseError(500, implode('<br />', $errors));

@@ -18,8 +18,8 @@ class FileManagerModelClients extends JModelList
                          clients.phone, 
                          clients.cell, 
                          clients.fax, 
-                         clients.address, 
-                         clients.subscribe,
+                         clients.address,
+                         clients.created_by,
                          users.name,
                          users.email,
                          users.username");
@@ -28,4 +28,11 @@ class FileManagerModelClients extends JModelList
 
 		return (string)$query;
 	}
+    
+    
+    public function getModel($name = 'Client', $prefix = 'FileManagerModel') {
+        $model = parent::getModel($name, $prefix, array('ignore_request' => true));
+        
+        return $model;
+    }
 }

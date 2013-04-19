@@ -77,10 +77,19 @@ class FileManagerModelFileTypes extends JModelItem
     
     public function updateType($id, $arr) {
         $table =& $this->getTable();
+        $config = JComponentHelper::getParams('com_filemanager');
         
         if (!$table->load($id)) {
             JError::raiseWarning( 500, $table->getError() . ' (id:' . $id . ')' );
             return false;
+        }
+        
+        if (!$config->get('allow_crossediting')) {
+            $user =& JFactory::getUser();
+            if ((int) $table->created_by != (int) $user->get('id')) {
+                JError::raiseWarning(500, 'You can only edit content created by you.');
+                return false;
+            }
         }
         
         if (!$table->bind($arr)) {
@@ -101,6 +110,20 @@ class FileManagerModelFileTypes extends JModelItem
  
     public function removeType($id) {
         $table =& $this->getTable();
+        $config = JComponentHelper::getParams('com_filemanager');
+        
+        if (!$table->load($id)) {
+            JError::raiseWarning( 500, $table->getError() . ' (id:' . $id . ')' );
+            return false;
+        }
+        
+        if (!$config->get('allow_crossediting')) {
+            $user =& JFactory::getUser();
+            if ((int) $table->created_by != (int) $user->get('id')) {
+                JError::raiseWarning(500, 'You can only edit content created by you.');
+                return false;
+            }
+        }
         
         if (!$table->delete($id)) {
             JError::raiseWarning( 500, $table->getError() . ' (id:' . $id . ')' );

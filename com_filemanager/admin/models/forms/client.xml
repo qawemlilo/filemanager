@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+  <fieldset>
+    <field name="id" type="hidden" />
+    <field name="title" type="text" label="Title" description="Client Title" size="40" class="inputbox" default="" />
+    <field name="phone" type="text" label="Phone" description="Client Phone" size="40" class="inputbox" default="" />
+    <field name="cell" type="text" label="Cell" description="Client Cell" size="40" class="inputbox" default="" />
+    <field name="fax" type="text" label="Fax" description="Client Fax" size="40" class="inputbox" default="" />
+  </fieldset>
+</form>

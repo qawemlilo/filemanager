@@ -15,10 +15,47 @@ defined('_JEXEC') or die('Restricted Access');
   <th>
     <?php echo JText::_('Email Address'); ?>
   </th>
+  
+  <?php
+    if($this->config->get('show_tel')) {
+        $this->colspan += 1;    
+  ?> 
   <th>
     <?php echo JText::_('Phone Number'); ?>
-  </th>
+  </th> 
+  <?php
+    }
+    if($this->config->get('show_cell')) {
+        $this->colspan += 1;    
+  ?>   
   <th>
     <?php echo JText::_('Cell Number'); ?>
   </th>
+  <?php
+    }
+    if($this->config->get('show_fax')) {
+        $this->colspan += 1;    
+  ?> 
+  <th>
+    <?php echo JText::_('Fax Number'); ?>
+  </th>
+  <?php
+    }
+    if($this->config->get('show_address')) {
+        $this->colspan += 1;    
+  ?> 
+  <th>
+    <?php echo JText::_('Address'); ?>
+  </th>
+  <?php
+    }
+    if($this->config->get('show_createdby')) {
+        $this->colspan += 1;    
+  ?>
+  <th>
+    <?php echo JText::_('Created By'); ?>
+  </th>
+  <?php 
+    }
+  ?>
 </tr>

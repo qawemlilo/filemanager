@@ -6,7 +6,11 @@ echo $this->loadTemplate('head');
 ?>
 <div class="row-fluid">
   <form action="<?php echo JRoute::_('index.php?option=com_filemanager&view=clients'); ?>" method="post" name="pagination-form">
-   <p>Display # <?php echo $this->pagination->getLimitBox() . " &nbsp; &nbsp; <span style=\"margin-left: 200px;\"> " . $this->pagination->getPagesCounter(); ?></span></p>
+   <p>Display # <?php 
+        if ($this->pagination) { 
+           echo $this->pagination->getLimitBox() . " &nbsp; &nbsp; <span style=\"margin-left: 200px;\"> " . $this->pagination->getPagesCounter() . '</span>'; 
+        } ?>
+   </p>
   </form>
 </div>
 
@@ -53,7 +57,7 @@ echo $this->loadTemplate('head');
 </form>
 </div>
 <div class="row-fluid" id="pagidiv" style="text-align: center; border-top: 0px">
-    <?php echo $this->pagination->getPagesLinks(); ?>
+    <?php if ($this->pagination) { echo $this->pagination->getPagesLinks(); } ?>
 </div>
 
 <script>window.jQuery || document.write('<script src="<?php echo JURI::base() . 'components/com_filemanager/asserts/js/jquery.js' ?>"><\/script>')</script>

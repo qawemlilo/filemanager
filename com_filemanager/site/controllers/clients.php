@@ -25,6 +25,7 @@ class FileManagerControllerClients extends JController
         $application =& JFactory::getApplication();
         $model =& $this->getModel('clients');
         $refer = JRoute::_($_SERVER['HTTP_REFERER']);
+        $user =& JFactory::getUser();
         $client = array();
         
         $id = $this->createUser();
@@ -35,6 +36,7 @@ class FileManagerControllerClients extends JController
         }
         
         $client['userid'] = $id;
+        $client['created_by'] = (int) $user->get('id');
         $client['title'] = JRequest::getVar('title', '', 'post', 'string');
         $client['phone'] = JRequest::getVar('phone', 0, 'post', 'int');
         $client['fax'] = JRequest::getVar('fax', 0, 'post', 'int');
@@ -100,7 +102,6 @@ class FileManagerControllerClients extends JController
         $client['fax'] = JRequest::getVar('fax', 0, 'post', 'int');
         $client['cell'] = JRequest::getVar('cell', 0, 'post', 'int');
         $client['address'] = JRequest::getVar('address', '', 'post', 'string');
-        //$client['subscribe'] = JRequest::getVar('subscribe', 0, 'post', 'int');
         
         if (!$this->updateUser()) {
             JError::raiseWarning(500, 'Failed to update user info');

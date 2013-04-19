@@ -21,6 +21,7 @@ class FileManagerViewClients extends JView
         $this->layout = JRequest::getVar('layout', '', 'GET');
         $this->config = JComponentHelper::getParams('com_filemanager');
         $this->user =& JFactory::getUser();
+        $this->pagination = '';
         
         if(!isAllowed()) {
             $application = JFactory::getApplication();
@@ -37,7 +38,9 @@ class FileManagerViewClients extends JView
         }
         else {
             $this->clients = $this->get('Clients');
-            $this->pagination = $this->get('Pagination');
+            if ($this->clients) {
+              $this->pagination = $this->get('Pagination');
+            }
         }
         
         parent::display($tpl);

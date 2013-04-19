@@ -1,63 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
-	<fieldset name="clients_config" label="Clients Admin Config" description="Clients Admin Config">
-        <field name="system_name" type="text" default="Joomla! File Manager" label="Component Name" description="Name to be displayed to users"></field>
+	<fieldset name="clients_config" label="COM_FILEMANAGER_ADMIN_CONFIG_CLIENTS_LABEL" description="COM_FILEMANAGER_ADMIN_CONFIG_CLIENTS_DESCRIPTION">
+        <field name="system_name" type="text" default="COM_FILEMANAGER" label="COM_FILEMANAGER_ADMIN_CONFIG_SYSTEM_LABEL" description="COM_FILEMANAGER_ADMIN_CONFIG_SYSTEM_DESCRIPTION"></field>
         
-        <field name="show_title" type="radio" label="Show Title Field" description="Show Title Field" default="1">
+        <field name="show_title" type="radio" label="COM_FILEMANAGER_ADMIN_CONFIG_TITLE_LABEL" description="COM_FILEMANAGER_ADMIN_CONFIG_TITLE_DESCRIPTION" default="1">
             <option value="0">JHIDE</option>
             <option value="1">JSHOW</option>
         </field>
-        <field name="show_tel" type="radio" label="Show Telephone Field" description="Show Telephone Field" default="1">
+        <field name="show_createdby" type="radio" label="COM_FILEMANAGER_ADMIN_CONFIG_CREATEDBY_LABEL" description="COM_FILEMANAGER_ADMIN_CONFIG_CREATEDBY_DESCRIPTION" default="1">
             <option value="0">JHIDE</option>
             <option value="1">JSHOW</option>
         </field>
-        <field name="show_cell" type="radio" label="Show Cell Field" description="Show Cell Field" default="1">
+        <field name="allow_crossediting" type="radio" label="COM_FILEMANAGER_ADMIN_CONFIG_CROSSEDITING_LABEL" description="COM_FILEMANAGER_ADMIN_CONFIG_CROSSEDITING_DESCRIPTION" default="0">
             <option value="0">JHIDE</option>
             <option value="1">JSHOW</option>
         </field>
-        <field name="show_fax" type="radio" label="Show Fax Field" description="Show Fax Field" default="1">
+        <field name="show_tel" type="radio" label="COM_FILEMANAGER_ADMIN_CONFIG_TEL_LABEL" description="COM_FILEMANAGER_ADMIN_CONFIG_TEL_DESCRIPTION" default="1">
             <option value="0">JHIDE</option>
             <option value="1">JSHOW</option>
         </field>
-        <field name="show_address" type="radio" label="Show Address Field" description="Show Address Field" default="1">
+        <field name="show_cell" type="radio" label="COM_FILEMANAGER_ADMIN_CONFIG_CELL_LABEL" description="COM_FILEMANAGER_ADMIN_CONFIG_CELL_DESCRIPTION" default="1">
+            <option value="0">JHIDE</option>
+            <option value="1">JSHOW</option>
+        </field>
+        <field name="show_fax" type="radio" label="COM_FILEMANAGER_ADMIN_CONFIG_FAX_LABEL" description="COM_FILEMANAGER_ADMIN_CONFIG_FAX_DESCRIPTION" default="1">
+            <option value="0">JHIDE</option>
+            <option value="1">JSHOW</option>
+        </field>
+        <field name="show_address" type="radio" label="COM_FILEMANAGER_ADMIN_CONFIG_ADDRESS_LABEL" description="COM_FILEMANAGER_ADMIN_CONFIG_ADDRESS_DESCRIPTION" default="1">
             <option value="0">JHIDE</option>
             <option value="1">JSHOW</option>
         </field>
 	</fieldset>
     
-	<fieldset name="styles_config" label="Component Styles" description="Component CSS">
-        <field name="include_bootstrap" type="radio" label="Include Bootstrap" description="Include Twitter Bootstrap" default="1">
+	<fieldset name="styles_config" label="COM_FILEMANAGER_ADMIN_CONFIG_COMCSS_LABEL" description="COM_FILEMANAGER_ADMIN_CONFIG_COMCSS_DESCRIPTION">
+        <field name="include_bootstrap" type="radio" label="COM_FILEMANAGER_ADMIN_CONFIG_BOOTSTRAP_LABEL" description="COM_FILEMANAGER_ADMIN_CONFIG_BOOTSTRAP_DESCRIPTION" default="1">
             <option value="0">NO</option>
             <option value="1">YES</option>
         </field>
-        <field name="include_paginationjs" type="radio" label="Include Pagination Script" description="Include Pagination Script" default="1">
+        <field name="include_paginationjs" type="radio" label="COM_FILEMANAGER_ADMIN_CONFIG_PGJS_LABEL" description="COM_FILEMANAGER_ADMIN_CONFIG_PGJS_DESCRIPTION" default="1">
             <option value="0">NO</option>
             <option value="1">YES</option>
         </field>
-        <field name="include_customcss" type="textarea" rows="20" cols="40" label="Custom CSS" description="Custom CSS"></field>
+        <field name="include_customcss" type="textarea" rows="20" cols="40" label="COM_FILEMANAGER_ADMIN_CONFIG_CSS_LABEL" description="COM_FILEMANAGER_ADMIN_CONFIG_CSS_DESCRIPTION"></field>
 	</fieldset>
     
     
-	<fieldset name="files_config" label="File Uploads Config" description="File Uploads Config">
-        <field name="og_filename" type="radio" label="Use Original Filename" description="When uploading files, do you want to keep the original file name?" default="0">
+	<fieldset name="files_config" label="COM_FILEMANAGER_ADMIN_CONFIG_FILECONFIG_LABEL" description="COM_FILEMANAGER_ADMIN_CONFIG_FILECONFIG_DESCRIPTION">
+        <field name="og_filename" type="radio" label="COM_FILEMANAGER_ADMIN_CONFIG_FILENAME_LABEL" description="COM_FILEMANAGER_ADMIN_CONFIG_FILENAME_DESCRIPTION" default="0">
             <option value="0">NO</option>
             <option value="1">YES</option>
         </field>
-        <field name="use_timestamp" type="radio" label="Use Time Stamp" description="When uploading files, do you want to use the current time as file name?" default="1">
+        <field name="use_timestamp" type="radio" label="COM_FILEMANAGER_ADMIN_CONFIG_TIMESTAMP_LABEL" description="COM_FILEMANAGER_ADMIN_CONFIG_TIMESTAMP_DESCRIPTION" default="1">
             <option value="0">NO</option>
             <option value="1">YES</option>
         </field>
-        <field name="filename_prefix" type="text" label="Filename Prefix" description="If you use the current time as file name, you can also add a prefix"></field>
+        <field name="filename_prefix" type="text" label="COM_FILEMANAGER_ADMIN_CONFIG_PREFIX_LABEL" description="COM_FILEMANAGER_ADMIN_CONFIG_PREFIX_DESCRIPTION"></field>
 	</fieldset>
     
     
-	<fieldset name="email_config" label="Emails Config" description="Emails Config">
-        <field name="email_newclient" type="radio" label="Email New Clients" description="Send an email notification to new clients" default="1">
+	<fieldset name="email_config" label="COM_FILEMANAGER_ADMIN_CONFIG_EMAILCONFIG_LABEL" description="COM_FILEMANAGER_ADMIN_CONFIG_EMAILCONFIG_DESCRIPTION">
+        <field name="email_newclient" type="radio" label="COM_FILEMANAGER_ADMIN_CONFIG_NEWCLIENT_LABEL" description="COM_FILEMANAGER_ADMIN_CONFIG_NEWCLIENT_DESCRIPTION" default="1">
             <option value="0">NO</option>
             <option value="1">YES</option>
         </field>
-        <field name="email_from" type="text" label="From" description="Company email address"></field>
-        <field name="email_msg" type="textarea" rows="10" cols="40" label="Email Message" description="Custom email message"></field>
+        <field name="email_from" type="text" label="COM_FILEMANAGER_ADMIN_CONFIG_FROM_LABEL" description="COM_FILEMANAGER_ADMIN_CONFIG_FROM_DESCRIPTION"></field>
+        <field name="email_msg" type="textarea" rows="10" cols="40" label="COM_FILEMANAGER_ADMIN_CONFIG_MSG_LABEL" description="COM_FILEMANAGER_ADMIN_CONFIG_MSG_DESCRIPTION"></field>
 	</fieldset>
     
 	<fieldset name="permissions" label="JCONFIG_PERMISSIONS_LABEL" description="JCONFIG_PERMISSIONS_DESC">

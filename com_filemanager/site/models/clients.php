@@ -75,7 +75,7 @@ class FileManagerModelClients extends JModelItem
                          clients.cell, 
                          clients.address, 
                          clients.fax, 
-                         clients.subscribe, 
+                         clients.created_by, 
                          users.name,
                          users.username,
                          users.email");
@@ -93,10 +93,20 @@ class FileManagerModelClients extends JModelItem
     
     public function updateClient($id, $arr) {
         $table = $this->getTable();
+        $config = JComponentHelper::getParams('com_filemanager');
+        
         
         if (!$table->load($id)) {
             JError::raiseWarning(500, $table->getError() . ' (id:' . $id . ')');
             return false;
+        }
+        
+        if (!$config->get('allow_crossediting')) {
+            $user =& JFactory::getUser();
+            if ((int) $table->created_by != (int) $user->get('id')) {
+                JError::raiseWarning(500, 'You can only edit content created by you.');
+                return false;
+            }
         }
         
         if (!$table->bind($arr)) {
@@ -116,12 +126,22 @@ class FileManagerModelClients extends JModelItem
     
  
     public function removeClients($clients) {
+        $user =& JFactory::getUser();
+        $userid = (int) $user->get('id');
+        $config = JComponentHelper::getParams('com_filemanager');
+        
         if (is_array($clients) && count($clients) > 0) {
             $ids = '(' . implode(",", $clients) . ')';
-            
             $db =& JFactory::getDBO();
+            
             $query = "DELETE FROM #__users WHERE id IN (SELECT userid FROM #__fm_clients WHERE id IN $ids)";
             $query2 = "DELETE FROM #__fm_clients WHERE id IN $ids";
+            
+            if (!$config->get('allow_crossediting')) {
+                $query = "DELETE FROM #__users WHERE id IN (SELECT userid FROM #__fm_clients WHERE id IN $ids AND created_by = $userid )";
+                $query2 = "DELETE FROM #__fm_clients WHERE id IN $ids AND created_by = $userid";
+            }
+            
             $db->setQuery($query);
             $result = $db->query();
             
@@ -152,7 +172,7 @@ class FileManagerModelClients extends JModelItem
                          clients.cell, 
                          clients.fax, 
                          clients.address, 
-                         clients.subscribe,
+                         clients.created_by,
                          users.name,
                          users.email,
                          users.username ";
