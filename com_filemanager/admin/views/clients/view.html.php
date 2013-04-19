@@ -14,15 +14,29 @@ class FileManagerViewClients extends JView
         $this->clients = $this->get('Items');
         $this->pagination = $this->get('Pagination');
         
-        jimport('joomla.application.component.view');
-        JToolBarHelper::title(JText::_('COM_FILEMANAGER'));
-        JToolBarHelper::preferences('com_filemanager');
-        
         if (count($errors = $this->get('Errors'))) {
             JError::raiseError(500, implode('<br />', $errors));
             return false;
         }
         
+        $this->addToolBar();
+        
         parent::display($tpl);
+        $this->setDocument();
+    }
+    
+    
+    
+    protected function addToolBar() {
+        JToolBarHelper::title(JText::_('COM_FILEMANAGER'));
+        JToolBarHelper::preferences('com_filemanager');
+    }
+    
+    
+    
+    
+    protected function setDocument() {
+        $document = JFactory::getDocument();
+        $document->setTitle(JText::_('COM_FILEMANAGER'));
     }
 }
