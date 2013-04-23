@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
 	<fieldset name="clients_config" label="COM_FILEMANAGER_ADMIN_CONFIG_CLIENTS_LABEL" description="COM_FILEMANAGER_ADMIN_CONFIG_CLIENTS_DESCRIPTION">
-        <field name="system_name" type="text" default="COM_FILEMANAGER" label="COM_FILEMANAGER_ADMIN_CONFIG_SYSTEM_LABEL" description="COM_FILEMANAGER_ADMIN_CONFIG_SYSTEM_DESCRIPTION"></field>
+        <field name="system_name" type="text" default="Joomla! File Manager" label="COM_FILEMANAGER_ADMIN_CONFIG_SYSTEM_LABEL" description="COM_FILEMANAGER_ADMIN_CONFIG_SYSTEM_DESCRIPTION"></field>
         
         <field name="show_title" type="radio" label="COM_FILEMANAGER_ADMIN_CONFIG_TITLE_LABEL" description="COM_FILEMANAGER_ADMIN_CONFIG_TITLE_DESCRIPTION" default="1">
             <option value="0">JHIDE</option>

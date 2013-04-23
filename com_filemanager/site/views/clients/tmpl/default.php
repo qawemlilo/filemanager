@@ -6,11 +6,10 @@ echo $this->loadTemplate('head');
 ?>
 <div class="row-fluid">
   <form action="<?php echo JRoute::_('index.php?option=com_filemanager&view=clients'); ?>" method="post" name="pagination-form">
-   <p>Display # <?php 
+    <?php 
         if ($this->pagination) { 
-           echo $this->pagination->getLimitBox() . " &nbsp; &nbsp; <span style=\"margin-left: 200px;\"> " . $this->pagination->getPagesCounter() . '</span>'; 
+           echo '<p>Display #' . $this->pagination->getLimitBox() . " &nbsp; &nbsp; <span style=\"margin-left: 200px;\"> " . $this->pagination->getPagesCounter() . '</span></p>'; 
         } ?>
-   </p>
   </form>
 </div>
 

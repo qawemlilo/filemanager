@@ -22,6 +22,7 @@ class FileManagerViewUploads extends JView
         $this->config = JComponentHelper::getParams('com_filemanager');
         $this->user =& JFactory::getUser();
         $application = JFactory::getApplication();
+        $this->pagination = '';
         
         if(!isAllowed()) {
             $application->redirect('index.php?option=com_users&view=login', 'Restricted area, login required.');

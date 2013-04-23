@@ -6,9 +6,14 @@ echo $this->loadTemplate('head');
 ?>
 
 <div class="row-fluid">
+<?php if ($this->pagination) {
+?>
   <form action="<?php echo JRoute::_('index.php?option=com_filemanager&view=uploads'); ?>" method="post" name="pagination-form">
    <p>Display # <?php echo $this->pagination->getLimitBox() . " &nbsp; &nbsp; <span style=\"margin-left: 200px;\"> " . $this->pagination->getPagesCounter(); ?></span></p>
   </form>
+<?php 
+ }
+?>
 </div>
 
 <div class="row-fluid" id="ss-admin-table">
@@ -54,7 +59,7 @@ echo $this->loadTemplate('head');
 </div>
 
 <div class="row-fluid" id="pagidiv" style="text-align: center">
-    <?php echo $this->pagination->getPagesLinks(); ?>
+    <?php if ($this->pagination) { echo $this->pagination->getPagesLinks(); } ?>
 </div>
 
 
