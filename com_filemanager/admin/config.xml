@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
 	<fieldset name="clients_config" label="COM_FILEMANAGER_ADMIN_CONFIG_CLIENTS_LABEL" description="COM_FILEMANAGER_ADMIN_CONFIG_CLIENTS_DESCRIPTION">
-        <field name="system_name" type="text" default="Joomla! File Manager" label="COM_FILEMANAGER_ADMIN_CONFIG_SYSTEM_LABEL" description="COM_FILEMANAGER_ADMIN_CONFIG_SYSTEM_DESCRIPTION"></field>
+        <field name="system_name" type="text" size="40" default="Joomla! File Manager" label="COM_FILEMANAGER_ADMIN_CONFIG_SYSTEM_LABEL" description="COM_FILEMANAGER_ADMIN_CONFIG_SYSTEM_DESCRIPTION"></field>
         
         <field name="show_title" type="radio" label="COM_FILEMANAGER_ADMIN_CONFIG_TITLE_LABEL" description="COM_FILEMANAGER_ADMIN_CONFIG_TITLE_DESCRIPTION" default="1">
             <option value="0">JHIDE</option>
@@ -55,7 +55,7 @@
             <option value="0">NO</option>
             <option value="1">YES</option>
         </field>
-        <field name="filename_prefix" type="text" label="COM_FILEMANAGER_ADMIN_CONFIG_PREFIX_LABEL" description="COM_FILEMANAGER_ADMIN_CONFIG_PREFIX_DESCRIPTION"></field>
+        <field name="filename_prefix" type="text" size="40" label="COM_FILEMANAGER_ADMIN_CONFIG_PREFIX_LABEL" description="COM_FILEMANAGER_ADMIN_CONFIG_PREFIX_DESCRIPTION"></field>
 	</fieldset>
     
     
@@ -64,7 +64,7 @@
             <option value="0">NO</option>
             <option value="1">YES</option>
         </field>
-        <field name="email_from" type="text" label="COM_FILEMANAGER_ADMIN_CONFIG_FROM_LABEL" description="COM_FILEMANAGER_ADMIN_CONFIG_FROM_DESCRIPTION"></field>
+        <field name="email_from" type="text" size="40" label="COM_FILEMANAGER_ADMIN_CONFIG_FROM_LABEL" description="COM_FILEMANAGER_ADMIN_CONFIG_FROM_DESCRIPTION"></field>
         <field name="email_msg" type="textarea" rows="10" cols="40" label="COM_FILEMANAGER_ADMIN_CONFIG_MSG_LABEL" description="COM_FILEMANAGER_ADMIN_CONFIG_MSG_DESCRIPTION"></field>
 	</fieldset>
     

@@ -9,7 +9,6 @@ echo $this->loadTemplate('head');
 <form class="form-validate form-horizontal well well-small" action="<?php echo JRoute::_('index.php'); ?>" name="newfiletype-form" id="newfiletype-form" method="post">
 <fieldset>
 
-<!-- Text input-->
 <div class="control-group">
   <label class="control-label">File Type</label>
   <div class="controls">
@@ -22,7 +21,6 @@ echo $this->loadTemplate('head');
 <input type="hidden" name="task" value="filetypes.add" />
 <?php echo JHtml::_('form.token'); ?>
 
-<!-- Button (Double) -->
 <div class="control-group">
   <label class="control-label"></label>
   <div class="controls">
