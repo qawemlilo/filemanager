@@ -6,14 +6,6 @@ defined('_JEXEC') or die('Restricted access');
 // import Joomla view library
 jimport('joomla.application.component.view');
 
-// Function checks if the user has permission to view this page
-function isAllowed($permission = 3) {
-    $user =& JFactory::getUser();
-    $isAllowed = in_array($permission, $user->authorisedLevels());
-    
-	return $isAllowed;
-}
-
 
 class FileManagerViewClients extends JView
 {
@@ -23,9 +15,10 @@ class FileManagerViewClients extends JView
         $this->user =& JFactory::getUser();
         $this->pagination = '';
         
-        if(!isAllowed()) {
+        if(!$this->user->authorise('core.manage', 'com_filemanager')) {
             $application = JFactory::getApplication();
-            $application->redirect('index.php?option=com_users&view=login', 'Restricted area, login required.');
+            $refer = JRoute::_($_SERVER['HTTP_REFERER']);
+            $application->redirect($refer, 'Restricted area, login required.');
         }
         
         if ($this->layout == 'new' || $this->layout == 'edit') {

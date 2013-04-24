@@ -4,7 +4,6 @@ defined('_JEXEC') or die('Restricted access');
 
 // import Joomla controller library
 jimport('joomla.application.component.controller');
-jimport('joomla.filesystem.file');
 
 class FileManagerControllerClient extends JController
 {
@@ -60,5 +59,38 @@ class FileManagerControllerClient extends JController
         }
         
         return true;
+    }
+    
+    
+    
+    
+    public function download() {
+        header("Content-Type: application/octet-stream");
+        
+        $user =& JFactory::getUser();
+        
+        if ($user->guest) {
+            die('Unauthorised user');
+        }
+        
+        $id = JRequest::getVar('id', 0, 'get', 'int');
+        $filename = JRequest::getVar('fl', '', 'get', 'string');
+        $file = JPATH_SITE . DS . 'media' . DS . 'com_filemanager' . DS . 'client_' . $id . DS . $filename;
+        
+        if (!file_exists($file)) {
+            die('File not found');   
+        }
+        
+        header("Content-Disposition: attachment; filename=" . urlencode($filename));
+        header("Content-Type: application/force-download");
+        header("Content-Type: application/octet-stream");
+        header("Content-Type: application/download");
+        header("Content-Description: File Transfer");
+        header("Content-Length: " . filesize($file));
+        
+        ob_clean();
+        flush();
+        readfile($file);
+        exit();
     }
 }

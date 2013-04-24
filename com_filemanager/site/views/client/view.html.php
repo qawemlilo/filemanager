@@ -16,6 +16,7 @@ class FileManagerViewClient extends JView
         $this->config = JComponentHelper::getParams('com_filemanager');
         $this->user =& JFactory::getUser();
         $this->menu = false;
+        $this->details = $this->get('Details');
         
         if($this->user->guest) {
             $application = JFactory::getApplication();
@@ -23,8 +24,6 @@ class FileManagerViewClient extends JView
         }
         
         if ($this->layout == 'edit') {
-            $this->details = $this->get('Details');
-            
             if (!$this->details) {
                 JError::raiseError(500, "Database Eroor! Failed to load your details.");
                 return false;

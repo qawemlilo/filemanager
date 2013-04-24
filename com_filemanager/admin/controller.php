@@ -13,5 +13,8 @@ class FileManagerController extends JController
         JRequest::setVar('view', JRequest::getCmd('view', 'Clients'));
 
         parent::display($cachable);
+        
+        		// Set the submenu
+		FileManagerHelper::addSubmenu('clients');
     }
 }

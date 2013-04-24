@@ -7,7 +7,7 @@ echo $this->loadTemplate('head');
 <div class="row-fluid">
 <?php if ($this->pagination) {
 ?>
-  <form action="<?php echo JRoute::_('index.php?option=com_filemanager&view=filetypes'); ?>" method="post" name="pagination-form">
+  <form action="<?php echo JRoute::_('index.php?option=com_filemanager&view=filetypes'); ?>" style="margin-bottom: 0px" method="post" name="pagination-form">
    <p>Display #  <?php echo $this->pagination->getLimitBox(); ?> &nbsp; &nbsp; <span style="margin-left: 200px;"> <?php echo $this->pagination->getPagesCounter(); ?> </span></p>
   </form>
 <?php } ?>
@@ -93,6 +93,7 @@ jQuery.noConflict();
     <?php
       endif;
     ?>
+        $('#pagidiv').find('li.pagination-start').removeClass('pagination-start');
         
         $('#delete-type').on('click', function () {
             var yes = confirm('Are you sure you want to delete the selected item(s)?');

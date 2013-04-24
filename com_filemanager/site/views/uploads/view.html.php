@@ -6,14 +6,6 @@ defined('_JEXEC') or die('Restricted access');
 // import Joomla view library
 jimport('joomla.application.component.view');
 
-// Function checks if the user has permission to view this page
-function isAllowed($permission = 3) {
-    $user =& JFactory::getUser();
-    $isAllowed = in_array($permission, $user->authorisedLevels());
-    
-	return $isAllowed;
-}
-
 
 class FileManagerViewUploads extends JView
 {
@@ -24,8 +16,10 @@ class FileManagerViewUploads extends JView
         $application = JFactory::getApplication();
         $this->pagination = '';
         
-        if(!isAllowed()) {
-            $application->redirect('index.php?option=com_users&view=login', 'Restricted area, login required.');
+        if(!$this->user->authorise('core.manage', 'com_filemanager')) {
+            $application = JFactory::getApplication();
+            $refer = JRoute::_($_SERVER['HTTP_REFERER']);
+            $application->redirect($refer, 'Restricted area, login required.');
         }
         
         if ($this->layout != 'new') {
@@ -47,7 +41,7 @@ class FileManagerViewUploads extends JView
     
     
     function createUsersDropDown ($users) {
-        $select = '<select name="clientid" class="input-xlarge">';
+        $select = '<select name="clientid" required="" class="input-xlarge">';
         $select .= '<option value="0">Select Client</option>';
         
         if (!(is_array($users) && count($users) > 0)) {
@@ -67,7 +61,7 @@ class FileManagerViewUploads extends JView
     
     
     function createFiletypeDropDown ($filetypes) {
-        $select = '<select name="typeid" class="input-xlarge">';
+        $select = '<select name="typeid" required="" class="input-xlarge">';
         $select .= '<option value="0">Select File Type</option>';
         
         if (!(is_array($filetypes) && count($filetypes) > 0)) {

@@ -23,17 +23,19 @@ class FileManagerControllerFileTypes extends JController
         JRequest::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
         
         $application =& JFactory::getApplication();
+        $user =& JFactory::getUser();
         $model =& $this->getModel('filetypes');
         $refer = JRoute::_($_SERVER['HTTP_REFERER']);
         $filetype = array();
 
         $filetype['label'] = JRequest::getVar('label', '', 'post', 'string');
+        $filetype['created_by'] = (int) $user->get('id');
         
         if ($model->addType($filetype)) {
-            $application->redirect('index.php?option=com_filemanager&view=filetypes', 'File type successfully created', 'success');
+            $application->redirect($refer, 'File type successfully created', 'success');
         }
         else {
-            $application->redirect($refer, 'Error! Failed to create file type', 'error');
+            $application->redirect('index.php?option=com_filemanager&view=filetypes', 'Error! Failed to create file type', 'error');
         }
     }
     
@@ -77,10 +79,10 @@ class FileManagerControllerFileTypes extends JController
         $id = JRequest::getVar('id', '', 'post', 'int');
         
         if ($model->updateType($id, $filetype)) {
-            $application->redirect('index.php?option=com_filemanager&view=filetypes', 'File type successfully updated', 'success');
+            $application->redirect($refer, 'File type successfully updated', 'success');
         }
         else {
-            $application->redirect($refer, 'Error! Failed to update file type', 'error');
+            $application->redirect('index.php?option=com_filemanager&view=filetypes', 'Error! Failed to update file type', 'error');
         }
     }
     

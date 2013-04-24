@@ -6,7 +6,7 @@ echo $this->loadTemplate('head');
 ?>
 
 <div class="row-fluid">
-  <form action="<?php echo JRoute::_('index.php?option=com_filemanager&view=client&file=' . $this->file); ?>" method="post" name="pagination-form">
+  <form action="<?php echo JRoute::_('index.php?option=com_filemanager&view=client&file=' . $this->file); ?>" style="margin-bottom: 0px" method="post" name="pagination-form">
    <p>Display # <?php echo $this->pagination->getLimitBox() . " &nbsp; &nbsp; <span style=\"margin-left: 200px;\"> " . $this->pagination->getPagesCounter(); ?></span></p>
   </form>
 </div>
@@ -38,7 +38,7 @@ echo $this->loadTemplate('head');
           <?php echo $file->ts; ?>
         </td>
         <td>
-          <a href="#">Download</a>
+          <a href="<?php echo JRoute::_('index.php?option=com_filemanager&task=client.download&fl=' . $file->filename . '&id=' . $this->details->id); ?>" target="_blank">Download</a>
         </td>
       </tr>
     <?php

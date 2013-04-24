@@ -11,54 +11,54 @@ defined('_JEXEC') or die('Restricted Access');
       <?php if($client->id) echo JHtml::_('grid.id', $i, $client->id); ?>
     </td>
     <?php if($this->config->get('show_title')) { ?>
-    <td>
+    <td style="text-align: center">
       <?php if($client->title && $client->name) echo $client->title . ' ' . $client->name; ?>
     </td>
     <?php 
         }
         else { 
     ?>
-    <td>
+    <td style="text-align: center">
       <?php if($client->name) echo $client->name; ?>
     </td>
     <?php 
         }
     ?>
-    <td>
+    <td style="text-align: center">
       <?php if($client->email) echo '<a href="mailto:"' . $client->email . '">' . $client->email . '</a>'; ?>
     </td>    
     <?php
         if($this->config->get('show_tel')) { 
     ?>
-    <td>
+    <td style="text-align: center">
       <?php if($client->phone) echo '0' . $client->phone; ?>
     </td>
     <?php 
         }
         if($this->config->get('show_cell')) { 
     ?>
-    <td>
+    <td style="text-align: center">
       <?php if($client->cell) echo '0' . $client->cell; ?>
     </td>
     <?php 
         }
         if($this->config->get('show_fax')) { 
     ?>
-    <td>
+    <td style="text-align: center">
       <?php if($client->fax) echo '0' . $client->fax; ?>
     </td>
     <?php 
         }
         if($this->config->get('show_address')) { 
     ?>
-    <td>
+    <td style="text-align: center">
       <?php if($client->address) echo $client->address; ?>
     </td>
     <?php 
         }
         if($this->config->get('show_createdby')) { 
     ?>
-    <td>
+    <td style="text-align: center">
       <?php 
           // this is a hack and has to be fixed
           // a good join can fetch all the required data.

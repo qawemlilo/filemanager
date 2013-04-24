@@ -108,10 +108,10 @@ class FileManagerControllerClients extends JController
         }
         
         if ($model->updateClient($id, $client)) {
-            $application->redirect('index.php?option=com_filemanager&view=clients', 'Client info successfully updated', 'success');
+            $application->redirect($refer, 'Client info successfully updated', 'success');
         }
         else {
-            $application->redirect($refer, 'Error! Failed to update client info', 'error');
+            $application->redirect('index.php?option=com_filemanager&view=clients', 'Error! Failed to update client info', 'error');
         }
     }
     
