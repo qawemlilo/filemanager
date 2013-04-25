@@ -114,10 +114,9 @@ if ($this->config->get('show_address')) {
   <label class="control-label">Password</label>
   <div class="controls">
     <input id="password" name="password" placeholder="Password" class="input-xlarge" required="" type="password">
-    <p class="help-block"></p>
+    <p class="help-block"><input id="sendemail" value="1" name="sendemail" style="margin-top: -2px;" checked="checked" type="checkbox"> Send new client an email notification?</p>
   </div>
 </div>
-
 
 <input type="hidden" name="option" value="com_filemanager" />
 <input type="hidden" name="task" value="clients.add" />

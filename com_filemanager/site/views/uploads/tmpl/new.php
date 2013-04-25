@@ -39,6 +39,7 @@ echo $this->loadTemplate('head');
   <label class="control-label">File</label>
   <div class="controls">
     <input name="fileupload" class="input-file" type="file" />
+    <p class="help-block"><input id="sendemail" value="1" name="sendemail" style="margin-top: -2px;" checked="checked" type="checkbox"> Send email notification?</p>
   </div>
 </div>
 
