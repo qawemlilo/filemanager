@@ -23,7 +23,7 @@ class FileManagerViewClient extends JView
             $application->redirect('index.php', 'Restricted area.');
         }
         
-        if ($this->layout == 'edit') {
+        if ($this->layout == 'edit' || $this->layout == 'pword') {
             if (!$this->details) {
                 JError::raiseError(500, "Database Eroor! Failed to load your details.");
                 return false;
