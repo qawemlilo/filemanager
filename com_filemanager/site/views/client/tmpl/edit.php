@@ -105,14 +105,22 @@ if ($this->config->get('show_address')) {
   <label class="control-label">Address</label>
   <div class="controls">                     
     <textarea name="address" class="input-xlarge" rows="5" placeholder="..."><?php if($this->details->address) echo $this->details->address; ?></textarea>
-    <p class="help-block"></p>
+    <p class="help-block"><a href="<?php echo JRoute::_('index.php?option=com_filemanager&view=client&layout=pword'); ?>">Change your password.</a></p>
+  </div>
+</div>
+<?php
+} else {
+?>
+<div class="control-group">
+  <label class="control-label">&nbsp;</label>
+  <div class="controls">
+    <input type="hidden">
+    <p class="help-block"><a href="<?php echo JRoute::_('index.php?option=com_filemanager&view=client&layout=pword'); ?>">Change your password.</a></p>
   </div>
 </div>
 <?php
 }
 ?>
-
-
 <input type="hidden" name="option" value="com_filemanager" />
 <input type="hidden" name="id" value="<?php echo $this->details->id; ?>" />
 <input type="hidden" name="userid" value="<?php echo $this->details->userid; ?>" />

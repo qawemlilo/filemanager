@@ -42,6 +42,7 @@ class FileManagerControllerClient extends JController
         $user =& JFactory::getUser();
 	    $fullname = JRequest::getVar('fullname', '', 'post', 'string');
 		$email = JRequest::getVar('email', '', 'post', 'string');
+        $id = JRequest::getVar('id', '', 'post', 'int');
         
         
         if ($email != $user->email || $fullname != $user->name) {
@@ -59,6 +60,72 @@ class FileManagerControllerClient extends JController
         }
         
         return true;
+    }
+    
+    
+    
+    public function changepassword() {
+        JRequest::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+        
+        $application =& JFactory::getApplication();
+        $refer = JRoute::_($_SERVER['HTTP_REFERER']);
+        $user =& JFactory::getUser();
+        
+	    $originalPassword = JRequest::getVar('currentpassword', '', 'post', 'string');
+		$p_1 = JRequest::getVar('newpassword', '', 'post', 'string');
+        $p_2 = JRequest::getVar('newpassword2', '', 'post', 'string');
+        $id = JRequest::getVar('userid', 0, 'post', 'int');
+        
+        
+        if ((int)$id != (int)$user->get('id')) {
+            $application->redirect($refer, 'Unauthorised user', 'error');
+        }
+        
+        $password = $user->get('password');
+        $salt = $this->getSalt($password);
+        $currentpassword = $this->makeCrypt($originalPassword, $salt);
+        
+        if ($currentpassword != $password || $p_1 != $p_2) {
+            $application->redirect($refer, 'Password could not be verified', 'error');
+        }
+        
+        $newpassword = $this->makeCrypt($p_1);
+        
+        $user->set('password', $newpassword);
+        
+        if (!$user->save()) {
+            $application->redirect($refer, 'Password could not be updated', 'error');
+        }
+        
+        $application->redirect('index.php?option=com_filemanager&view=client', 'Password updated', 'success');
+    }
+    
+    
+
+    
+    private function getSalt($password) {  
+        $passwordarray = explode(":", $password);
+		
+		if (is_array($passwordarray)) {
+            return $passwordarray[1];
+        }
+        
+        return false;
+    }
+    
+    
+    
+    
+    private function makeCrypt($password, $salt = false) {
+    
+		if (!$salt) {
+            $salt = JUserHelper::genRandomPassword(32);
+        }
+        
+        $crypt = JUserHelper::getCryptedPassword($password, $salt);
+        $crypted = $crypt.':'.$salt;
+        
+        return $crypted;
     }
     
     
