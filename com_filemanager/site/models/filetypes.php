@@ -80,25 +80,28 @@ class FileManagerModelFileTypes extends JModelItem
         $config = JComponentHelper::getParams('com_filemanager');
         
         if (!$table->load($id)) {
-            JError::raiseWarning( 500, $table->getError() . ' (id:' . $id . ')' );
+            JError::raiseWarning( 500, $table->getError());
             return false;
         }
         
+        // If cross editing is not allowed
         if (!$config->get('allow_crossediting')) {
             $user =& JFactory::getUser();
-            if ((int) $table->created_by != (int) $user->get('id')) {
+            
+            // check if the user created this entry
+            if ((int) $table->created_by != (int) $user->get('id')) { 
                 JError::raiseWarning(500, 'You can only edit content created by you.');
                 return false;
             }
         }
         
         if (!$table->bind($arr)) {
-            JError::raiseWarning( 500, $table->getError() . ' (id:' . $id . ')' );
+            JError::raiseWarning( 500, $table->getError());
             return false;
         }
         
         if (!$table->store($arr)) {
-            JError::raiseWarning( 500, $table->getError() . ' (id:' . $id . ')' );
+            JError::raiseWarning( 500, $table->getError());
             return false;
         }
                 

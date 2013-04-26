@@ -97,7 +97,7 @@ class FileManagerModelClients extends JModelItem
         
         
         if (!$table->load($id)) {
-            JError::raiseWarning(500, $table->getError() . ' (id:' . $id . ')');
+            JError::raiseWarning(500, $table->getError());
             return false;
         }
         
@@ -110,12 +110,12 @@ class FileManagerModelClients extends JModelItem
         }
         
         if (!$table->bind($arr)) {
-            JError::raiseWarning(500, $table->getError() . ' (id:' . $id . ')');
+            JError::raiseWarning(500, $table->getError());
             return false;
         }
         
         if (!$table->store($arr)) {
-            JError::raiseWarning(500, $table->getError() . ' (id:' . $id . ')');
+            JError::raiseWarning(500, $table->getError());
             return false;
         }
                 
