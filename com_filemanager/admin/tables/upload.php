@@ -8,10 +8,10 @@ jimport('joomla.database.table');
 /**
  * Hello Table class
  */
-class FileManagerTableClient extends JTable
+class FileManagerTableUpload extends JTable
 {
 	function __construct(&$db) 
 	{
-		parent::__construct('#__fm_clients', 'id', $db);
+		parent::__construct('#__fm_uploads', 'id', $db);
 	}
 }

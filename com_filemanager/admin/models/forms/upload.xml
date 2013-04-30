@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+  <fieldset>
+    <field name="id" type="hidden" />
+    <field name="ext" type="hidden" />
+    <field name="ts" type="calendar" label="Creation Date" description="Creation Date" />
+    <field name="clientid" type="text" label="Client ID" description="Client ID" size="40" class="inputbox" default="" />
+    <field name="typeid" type="text" label="Type ID" description="Type ID" size="40" class="inputbox" default="" />
+    <field name="filename" type="text" label="File name" description="File name" size="40" class="inputbox" default="" />
+    <field name="created_by" type="user" label="Created By" description="Created By" size="40" class="inputbox" default="" />
+  </fieldset>
+</form>

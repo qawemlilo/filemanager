@@ -10,11 +10,12 @@ jimport('joomla.application.component.controller');
 class FileManagerController extends JController
 {
     function display($cachable = false) {
-        JRequest::setVar('view', JRequest::getCmd('view', 'Clients'));
+        $view = JRequest::getCmd('view', 'Clients');
+        JRequest::setVar('view', $view);
 
         parent::display($cachable);
         
         		// Set the submenu
-		FileManagerHelper::addSubmenu('clients');
+		FileManagerHelper::addSubmenu($view);
     }
 }

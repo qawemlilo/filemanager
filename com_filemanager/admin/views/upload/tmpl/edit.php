@@ -5,7 +5,7 @@ defined('_JEXEC') or die('Restricted access');
 JHtml::_('behavior.tooltip');
 ?>
 
-<form action="<?php echo JRoute::_('index.php?option=com_filemanager&layout=edit&id='.(int) $this->client->id); ?>" method="post" name="adminForm" id="client-form">
+<form action="<?php echo JRoute::_('index.php?option=com_filemanager&view=uploads&layout=edit&id='.(int) $this->upload->id); ?>" method="post" name="adminForm" id="upload-form">
   <fieldset class="adminform">
     <legend><?php echo JText::_( 'COM_FILEMANAGER_ADMIN_CLIENT_DETAILS' ); ?></legend>
     <ul class="adminformlist">
@@ -22,7 +22,7 @@ JHtml::_('behavior.tooltip');
     </ul>
   </fieldset>
   <div>
-    <input type="hidden" name="task" value="client.edit" />
+    <input type="hidden" name="task" value="upload.edit" />
     <?php echo JHtml::_('form.token'); ?>
   </div>
 </form>

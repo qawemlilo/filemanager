@@ -3,8 +3,12 @@
   <fieldset>
     <field name="id" type="hidden" />
     <field name="title" type="text" label="Title" description="Client Title" size="40" class="inputbox" default="" />
+    <field name="name" type="text" label="Name" description="Client Name" size="40" class="inputbox" default="" />
+    <field name="email" type="text" label="Email" description="Client Email" size="40" class="inputbox" default="" />
     <field name="phone" type="text" label="Phone" description="Client Phone" size="40" class="inputbox" default="" />
     <field name="cell" type="text" label="Cell" description="Client Cell" size="40" class="inputbox" default="" />
     <field name="fax" type="text" label="Fax" description="Client Fax" size="40" class="inputbox" default="" />
+    <field name="address" type="text" label="Address" description="Client Address" size="40" class="inputbox" default="" />
+    <field name="created_by" type="text" readonly="readonly" label="Created By " description="Created By " size="40" class="inputbox" default="" />
   </fieldset>
 </form>

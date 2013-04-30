@@ -31,6 +31,9 @@ class FileManagerViewClients extends JView
     
     protected function addToolBar() {
         JToolBarHelper::title(JText::_('COM_FILEMANAGER'));
+        JToolBarHelper::addNew('client.add');
+        JToolBarHelper::editList('client.edit');
+        JToolBarHelper::deleteList('', 'clients.delete');
         JToolBarHelper::preferences('com_filemanager');
     }
     

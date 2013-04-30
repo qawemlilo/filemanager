@@ -31,6 +31,9 @@ class FileManagerViewUploads extends JView
     
     protected function addToolBar() {
         JToolBarHelper::title(JText::_('COM_FILEMANAGER'));
+        JToolBarHelper::addNew('upload.add');
+        JToolBarHelper::editList('upload.edit');
+        JToolBarHelper::deleteList('', 'uploads.delete');
         JToolBarHelper::preferences('com_filemanager');
     }
     

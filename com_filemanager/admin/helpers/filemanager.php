@@ -12,6 +12,7 @@ abstract class FileManagerHelper
 	 */
 	public static function addSubmenu($submenu) 
 	{
+        $submenu = strtolower($submenu);
 		JSubMenuHelper::addEntry(JText::_('COM_FILEMANAGER_SUBMENU_CLIENTS'), 'index.php?option=com_filemanager', $submenu == 'clients');
 		JSubMenuHelper::addEntry(JText::_('COM_FILEMANAGER_SUBMENU_UPLOADS'), 'index.php?option=com_filemanager&view=uploads', $submenu == 'uploads');
 	}
