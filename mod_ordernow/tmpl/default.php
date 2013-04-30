@@ -67,7 +67,7 @@ jQuery.noConflict();
             responseD = $('#responseD');
             
         progress.slideDown('slow', function () {
-            $.post('index.php?option=filemanager&task=orders.order', $(self).serialize())
+            $.post('index.php?option=filemanager&task=client.order', $(self).serialize())
             .done(function(data) {
                 progress.slideUp('slow', function () {
                     responseD.addClass('alert-success').html($('<strong>Order sent!</strong>')).slideDown('slow');
@@ -82,7 +82,7 @@ jQuery.noConflict();
             })
             .fail(function(data) {
                 progress.slideUp('slow', function () {
-                    responseD.addClass('alert-error').html($('<strong>Error, Order not sent!</strong>')).slideDown();
+                    responseD.addClass('alert-error').html($('<strong>Error, Order not sent!</strong><br>Contact: <a href="mailto:qawemlilo@gmail.com">qawemlilo@gmail.com</a>')).slideDown();
                 });
                   
                 window.setTimeout(function () { 

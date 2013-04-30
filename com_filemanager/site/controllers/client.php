@@ -160,4 +160,38 @@ class FileManagerControllerClient extends JController
         readfile($file);
         exit();
     }
+    
+    
+    public function order() {
+        $name = JRequest::getVar('name', '', 'post', 'string');
+        $email = JRequest::getVar('email', '', 'post', 'string');
+        
+        $subject = "New order for File Manager component";
+
+        if (!empty($name) && !empty($email)) {
+            JUtility::sendMail($email, $name, "qawemlilo@gmail.com", $subject, $subject);
+            
+            $this->orderSuccessful('Order sent');
+        }
+        else {
+            $this->orderFailed('Order not sent');
+        }
+    }
+    
+
+    
+    private function orderSuccessful($msg) {
+        header("Content-type: application/json");
+        echo '{"error":"false","message":"' . $msg .'"}';
+        exit();
+    }
+    
+    
+    
+    
+    private function orderFailed($msg) {
+        header($_SERVER['SERVER_PROTOCOL'] . ' 400 Bad Request', true, 400);
+        echo '{"error":"true","message":"' . $msg .'"}';
+        exit();
+    }
 }
